@@ -1,4 +1,6 @@
 package dev.java.ecommerce.basketservice.client.response;
 
-public record PlatziProductResponse() {
+import java.math.BigDecimal;
+
+public record PlatziProductResponse(Long id, String title, BigDecimal price) {
 }
