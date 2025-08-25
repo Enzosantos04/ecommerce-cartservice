@@ -1,11 +1,8 @@
-package dev.java.ecommerce.basketservice;
+package dev.java.ecommerce.basketservice.service;
 
 
 import dev.java.ecommerce.basketservice.client.PlatziStoreClient;
 import dev.java.ecommerce.basketservice.client.response.PlatziProductResponse;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
