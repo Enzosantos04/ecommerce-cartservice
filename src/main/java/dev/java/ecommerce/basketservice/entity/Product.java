@@ -1,12 +1,14 @@
 package dev.java.ecommerce.basketservice.entity;
 
 
-import org.springframework.data.mongodb.core.mapping.Document;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
-
-public class Products {
+@Getter
+@Setter
+public class Product {
     private Long id;
     private String title;
     private BigDecimal price;
