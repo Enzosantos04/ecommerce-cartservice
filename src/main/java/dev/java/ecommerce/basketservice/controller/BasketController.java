@@ -14,19 +14,16 @@ public class BasketController {
 
     public BasketController(BasketService basketService){
         this.basketService = basketService;
-
     }
 
     @PostMapping
     public ResponseEntity<Basket> createBasket(@RequestBody BasketRequest request){
-        return ResponseEntity.status(HttpStatus.CREATED).body(basketService.createBasket(request));
-
+        return ResponseEntity.status(HttpStatus.CREATED).body(basketService.createBasket(request))
     }
 
     @GetMapping("/{id}")
     ResponseEntity<Basket> getBasketById(@PathVariable String id){
         return ResponseEntity.ok(basketService.getBasketById(id));
-
     }
 
 }
