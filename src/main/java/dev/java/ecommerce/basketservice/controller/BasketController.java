@@ -18,12 +18,18 @@ public class BasketController {
 
     @PostMapping
     public ResponseEntity<Basket> createBasket(@RequestBody BasketRequest request){
-        return ResponseEntity.status(HttpStatus.CREATED).body(basketService.createBasket(request))
+        return ResponseEntity.status(HttpStatus.CREATED).body(basketService.createBasket(request));
     }
 
     @GetMapping("/{id}")
     ResponseEntity<Basket> getBasketById(@PathVariable String id){
         return ResponseEntity.ok(basketService.getBasketById(id));
+    }
+
+
+    @PutMapping("/{id}")
+    ResponseEntity<Basket> updateBasket(@PathVariable String id, @RequestBody BasketRequest request){
+        return ResponseEntity.status(HttpStatus.OK).body(basketService.updateBasket(id, request));
     }
 
 }
