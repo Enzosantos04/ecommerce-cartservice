@@ -1,11 +1,10 @@
 package dev.java.ecommerce.basketservice.entity;
-
+import com.fasterxml.jackson.annotation.JsonInclude;
 import dev.java.ecommerce.basketservice.enums.PaymentMethod;
 import dev.java.ecommerce.basketservice.enums.Status;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -22,6 +21,7 @@ public class Basket {
     private BigDecimal totalPrice;
     private List<Product> products;
     private Status status;
+    @JsonInclude(JsonInclude.Include.NON_NULL) // so inclua quando nao for null.
     private PaymentMethod paymentMethod;
 
     // metodo para calcular o total do carrinho
