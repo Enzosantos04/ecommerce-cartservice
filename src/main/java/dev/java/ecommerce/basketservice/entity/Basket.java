@@ -1,5 +1,6 @@
 package dev.java.ecommerce.basketservice.entity;
 
+import dev.java.ecommerce.basketservice.enums.PaymentMethod;
 import dev.java.ecommerce.basketservice.enums.Status;
 import lombok.*;
 import org.springframework.data.annotation.Id;
@@ -21,6 +22,7 @@ public class Basket {
     private BigDecimal totalPrice;
     private List<Product> products;
     private Status status;
+    private PaymentMethod paymentMethod;
 
     // metodo para calcular o total do carrinho
     //pega o preço de cada produto e multiplica pela quantidade

@@ -6,6 +6,7 @@ import dev.java.ecommerce.basketservice.entity.Basket;
 import dev.java.ecommerce.basketservice.entity.Product;
 import dev.java.ecommerce.basketservice.enums.Status;
 import dev.java.ecommerce.basketservice.repository.BasketRepository;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
