@@ -6,6 +6,7 @@ import dev.java.ecommerce.basketservice.controller.request.PaymentRequest;
 import dev.java.ecommerce.basketservice.entity.Basket;
 import dev.java.ecommerce.basketservice.entity.Product;
 import dev.java.ecommerce.basketservice.enums.Status;
+import dev.java.ecommerce.basketservice.exceptions.BusinessException;
 import dev.java.ecommerce.basketservice.exceptions.DataNotFoundException;
 import dev.java.ecommerce.basketservice.repository.BasketRepository;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,7 @@ public class BasketService {
     public Basket createBasket(BasketRequest basketRequest) {
         basketRepository.findByClientAndStatus(basketRequest.clientId(), Status.OPEN)
                 .ifPresent(basket -> {
-                    throw new RuntimeException("There is already an open basket for this client");
+                    throw new BusinessException("There is already an open basket for this client");
                 });
         List<Product> products = getProducts(basketRequest);
         //constroi o objeto do tipo Basket
