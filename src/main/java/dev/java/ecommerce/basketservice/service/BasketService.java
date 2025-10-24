@@ -8,7 +8,6 @@ import dev.java.ecommerce.basketservice.entity.Product;
 import dev.java.ecommerce.basketservice.enums.Status;
 import dev.java.ecommerce.basketservice.repository.BasketRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,5 +83,10 @@ public class BasketService {
         savedBasket.setStatus(Status.SOLD);
         return basketRepository.save(savedBasket);
 
+    }
+
+    public void deleteBasketById(String basketId){
+        Basket savedBasket = getBasketById(basketId);
+         basketRepository.delete(savedBasket);
     }
 }
