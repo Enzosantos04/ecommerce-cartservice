@@ -27,19 +27,7 @@ public class BasketService {
                 .ifPresent(basket -> {
                     throw new RuntimeException("There is already an open basket for this client");
                 });
-
-
-        List<Product> products = new ArrayList<>();
-        //para cada produto na requisição, buscar os detalhes do produto no serviço de produtos
-        basketRequest.products().forEach(productRequest ->{
-            PlatziProductResponse platziProductResponse = productService.getAllProductById(productRequest.id());
-            products.add(Product.builder()
-                    .id(platziProductResponse.id())
-                    .title(platziProductResponse.title())
-                    .price(platziProductResponse.price())
-                    .quantity(productRequest.quantity())
-                    .build());
-        } );
+        List<Product> products = getProducts(basketRequest);
         //constroi o objeto do tipo Basket
         //.build() cria o objeto
         Basket basket = Basket.builder()
@@ -60,17 +48,7 @@ public class BasketService {
     public Basket updateBasket (String basketId, BasketRequest request){
         Basket savedBasket = getBasketById(basketId);
 
-        List<Product> products = new ArrayList<>();
-        request.products().forEach(productRequest -> {
-            PlatziProductResponse platziProductResponse = productService.getAllProductById(productRequest.id());
-            products.add(Product.builder()
-                    .id(platziProductResponse.id())
-                    .title(platziProductResponse.title())
-                    .price(platziProductResponse.price())
-                    .quantity(productRequest.quantity())
-                    .build());
-        });
-
+        List<Product> products = getProducts(request);
         savedBasket.setProducts(products);
         savedBasket.calculateTotalPrice();
         return basketRepository.save(savedBasket);
@@ -88,5 +66,20 @@ public class BasketService {
     public void deleteBasketById(String basketId){
         Basket savedBasket = getBasketById(basketId);
          basketRepository.delete(savedBasket);
+    }
+
+    private List<Product> getProducts(BasketRequest basketRequest) {
+        List<Product> products = new ArrayList<>();
+        //para cada produto na requisição, buscar os detalhes do produto no serviço de produtos
+        basketRequest.products().forEach(productRequest ->{
+            PlatziProductResponse platziProductResponse = productService.getAllProductById(productRequest.id());
+            products.add(Product.builder()
+                    .id(platziProductResponse.id())
+                    .title(platziProductResponse.title())
+                    .price(platziProductResponse.price())
+                    .quantity(productRequest.quantity())
+                    .build());
+        } );
+        return products;
     }
 }
