@@ -13,4 +13,10 @@ public class ControllerAdvice {
     public String handleDataNotFound(DataNotFoundException ex){
         return ex.getMessage();
     }
+
+    @ExceptionHandler(BusinessException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String handleBusinessException(BusinessException ex){
+        return ex.getMessage();
+    }
 }
