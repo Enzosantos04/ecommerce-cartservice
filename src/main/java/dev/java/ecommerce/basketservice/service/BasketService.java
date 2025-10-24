@@ -6,6 +6,7 @@ import dev.java.ecommerce.basketservice.controller.request.PaymentRequest;
 import dev.java.ecommerce.basketservice.entity.Basket;
 import dev.java.ecommerce.basketservice.entity.Product;
 import dev.java.ecommerce.basketservice.enums.Status;
+import dev.java.ecommerce.basketservice.exceptions.DataNotFoundException;
 import dev.java.ecommerce.basketservice.repository.BasketRepository;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ public class BasketService {
 
     public Basket getBasketById(String id){
         return basketRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Basket not found"));
+                .orElseThrow(() -> new DataNotFoundException("Basket not found"));
 
     }
 
